@@ -118,5 +118,40 @@ export default function LoginSystem() {
     );
   }
 
-  return null;
+  return (
+    mode === "reset" ? (
+      <div className="p-8 max-w-md mx-auto bg-white shadow-lg rounded-xl font-sans">
+        <h1 className="text-2xl font-bold text-center text-blue-700 mb-4">비밀번호 찾기</h1>
+        <input type="email" placeholder="가입된 이메일을 입력하세요" className="w-full border rounded-md p-3 mb-4" value={email} onChange={e => setEmail(e.target.value)} />
+        <button onClick={() => setError("(예시) 비밀번호는 '1234'입니다.")} className="w-full bg-blue-600 text-white py-3 rounded mb-3">임시 비밀번호 확인</button>
+        <button onClick={() => { setError(""); setEmail(""); setMode("login"); }} className="w-full border py-3 rounded">로그인으로 돌아가기</button>
+          {error && <p className="text-red-500 mt-4 text-center">{error}</p>}
+        </div>
+    ) : (
+      <div className="p-8 max-w-md mx-auto bg-white shadow-lg rounded-xl font-sans">
+        <h1 className="text-3xl font-bold text-center text-blue-700 mb-6">GOREA {isSignup ? "회원가입" : "로그인"}</h1>
+        <input type="email" placeholder="이메일 입력" className="w-full border rounded-md p-3 mb-4" value={email} onChange={e => setEmail(e.target.value)} />
+        <div className="relative mb-4">
+          <input type={showPassword ? "text" : "password"} placeholder="비밀번호 입력" className="w-full border rounded-md p-3 pr-10" value={password} onChange={e => setPassword(e.target.value)} />
+          <button type="button" onClick={() => setShowPassword(prev => !prev)} className="absolute right-3 top-3 text-gray-500">👁️</button>
+        </div>
+        {isSignup && (
+          <input type="tel" placeholder="전화번호 입력" className="w-full border rounded-md p-3 mb-4" value={phone} onChange={e => setPhone(e.target.value)} />
+        )}
+        {isSignup ? (
+          <>
+            <button onClick={handleSignup} className="w-full bg-green-600 text-white py-3 rounded mb-3">회원가입</button>
+            <button onClick={() => setIsSignup(false)} className="w-full border py-3 rounded">로그인으로 돌아가기</button>
+          </>
+        ) : (
+          <>
+            <button onClick={handleLogin} className="w-full bg-blue-600 text-white py-3 rounded mb-3">로그인</button>
+            <button onClick={() => setIsSignup(true)} className="w-full border py-3 rounded">회원가입 하기</button>
+            <button onClick={() => setMode("reset")} className="w-full text-sm text-blue-600 mt-2 underline">비밀번호를 잊으셨나요?</button>
+          </>
+        )}
+        {error && <p className="text-red-500 mt-4 text-center">{error}</p>}
+      </div>
+    )
+  );
 }
