@@ -1,8 +1,3 @@
-import React from "react";
-import LoginSystem from "./LoginSystem";
-
-function App() {
-  return <LoginSystem />;
+export default function App() {
+  return <div>App Placeholder</div>;
 }
-
-export default App;
