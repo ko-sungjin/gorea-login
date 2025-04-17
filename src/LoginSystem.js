@@ -6,5 +6,4 @@ const initialUsers = [
   { email: "staff@gorea.com", password: "1234", phone: "010-5555-9999", role: "user", approved: false },
 ];
 
-// (중략) 로그인 시스템 전체 코드
-// 여기엔 로그인, 회원가입, 비밀번호 보기/찾기, 관리자 승인, 수동 등록, 역할 변경 등이 포함됩니다.
+// (중략) - 전체 코드는 실제 canvas 내용에서 추출
